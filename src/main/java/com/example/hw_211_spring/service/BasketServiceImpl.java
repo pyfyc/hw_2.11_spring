@@ -1,28 +1,36 @@
 package com.example.hw_211_spring.service;
 
+import com.example.hw_211_spring.model.Basket;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
+import javax.annotation.PostConstruct;
 import java.util.Set;
 
 @Service
 @SessionScope
 public class BasketServiceImpl implements BasketService {
-    private final Set<Integer> items;
+    private Basket basket;
 
-    public BasketServiceImpl(Set<Integer> items) {
-        this.items = items;
+    public BasketServiceImpl(Basket basket) {
+        this.basket = basket;
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("Service is here!!!");
     }
 
     @Override
     public void add(Set<Integer> itemIds) {
-        for (Integer itemId : itemIds) {
-            items.add(itemId);
+        if (basket == null) {
+            Basket basket = new Basket();
         }
+        basket.add(itemIds);
     }
 
     @Override
     public Set<Integer> get() {
-        return items;
+        return basket.getItemIds();
     }
 }
