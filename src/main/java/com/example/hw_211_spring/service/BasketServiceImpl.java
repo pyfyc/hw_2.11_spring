@@ -2,13 +2,11 @@ package com.example.hw_211_spring.service;
 
 import com.example.hw_211_spring.model.Basket;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.SessionScope;
 
 import javax.annotation.PostConstruct;
 import java.util.Set;
 
 @Service
-@SessionScope
 public class BasketServiceImpl implements BasketService {
     private Basket basket;
 
